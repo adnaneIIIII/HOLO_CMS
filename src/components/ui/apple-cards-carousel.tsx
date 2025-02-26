@@ -5,7 +5,6 @@ import React, {
   useState,
   createContext,
   useContext,
-  JSX,
 } from "react";
 import {
   IconArrowNarrowLeft,
@@ -15,7 +14,8 @@ import {
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import Image, { ImageProps } from "next/image";
-import { useOutsideClick } from "@/app/hooks/use-outside-click";
+import { JSX } from "react/jsx-runtime";
+import { useOutsideClick } from "@/hooks/use-outside-click";
 
 interface CarouselProps {
   items: JSX.Element[];
@@ -184,11 +184,7 @@ export const Card = ({
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [open]);
 
-  useOutsideClick(containerRef, () => {
-    if (open) {
-      handleClose();
-    }
-  });
+  useOutsideClick(containerRef, () => handleClose());
 
   const handleOpen = () => {
     setOpen(true);
@@ -204,6 +200,12 @@ export const Card = ({
       <AnimatePresence>
         {open && (
           <div className="fixed inset-0 h-screen z-50 overflow-auto">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="bg-black/80 backdrop-blur-lg h-full w-full fixed inset-0"
+            />
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -294,4 +296,3 @@ export const BlurImage = ({
     />
   );
 };
-

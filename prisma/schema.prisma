@@ -1,0 +1,71 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+}
+
+model User {
+  id       String  @id @default(cuid())
+  email    String  @unique
+  username String  @unique
+  clerkId  String  @unique
+  name     String?
+  image    String?
+
+  createdAt DateTime @default(now())
+  updateAt  DateTime @updatedAt
+}
+
+model Products {
+  id               String        @id @default(uuid())
+  name             String
+  description      String
+  shortdescription String
+  status           ProductStatus
+  price            Float
+  compareAtPrice   Float
+  images           String[]
+  isFeatured       Boolean       @default(false)
+  createdAt        DateTime      @default(now())
+
+  purchase Purchase[]
+}
+
+enum ProductStatus {
+  draft
+  published
+  archived
+}
+
+model Purchase {
+  id          String   @id @default(uuid())
+  firstname   String
+  lastname    String
+  email       String   @unique
+  phone       String
+  country     Countrys
+  
+  purchasedAt DateTime @default(now())
+
+  productId   String
+  Products    Products @relation(fields: [productId], references: [id])  // Fixed relation
+}
+
+
+enum Countrys {
+  United_States  @map("United States")
+  Canada
+  United_Kingdom @map("United Kingdom")
+  Australia
+  Philippines
+  Other
+}

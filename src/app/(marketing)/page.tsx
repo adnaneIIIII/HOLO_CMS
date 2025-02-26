@@ -7,7 +7,7 @@ import { Container, Wrapper } from "@/components";
 import { FloatingDockDemo } from "@/components/global/FloatingDockDemo";
 import { BorderBeam } from "@/components/ui/border-beam";
 import SectionBadge from "@/components/ui/section-badge";
-import { perks, pricingCards, reviews } from "@/constants";
+import { devices, perks, pricingCards, reviews } from "@/constants";
 import { AppleCardsCarouselDemo } from "@/components/global/AppleCardsCarouselDemo";
 import { cn } from "@/lib/utils";
 import { LampContainer } from "@/components/ui/lamp";
@@ -22,14 +22,33 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { ProductHome } from "../actions/Productaction";
+const products = await ProductHome();
 
-const HomePage = () => {
+export async function HomePage() {
+  const productdetail = {
+    title: "Monthly",
+    description: "Month of unlimited entertainment",
+    highlight: "unlimited entertainment",
+    buttonText: "Start for free",
+    features: [
+      "+10,000 TV Channels",
+      "+48,000 Movies & Series",
+      "4K / Ultra HD / FHD Picture Quality",
+      "99.9% Server Uptime",
+      "Free Channels & VOD Updates",
+      "Anti-Freeze System",
+      "All Devices are Supported",
+      "24/7 Technical Assistance",
+    ],
+  };
   const firstRow = reviews.slice(0, reviews.length / 2);
   const secondRow = reviews.slice(reviews.length / 2);
+  const therdRow = devices.slice(0, devices.length / 2);
   return (
     <section className="w-full relative flex items-center justify-center flex-col px-4 md:px-0 py-8">
       <Wrapper>
-        <div className="absolute inset-0 dark:bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[linear-gradient(to_right,#161616_1px,transparent_1px),linear-gradient(to_bottom,#161616_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)] -z-10 h-[150vh]" />
+        <div className="absolute inset-0 dark:bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[linear-gradient(to_right,#161616_1px,transparent_1px),linear-gradient(to_bottom,#161616_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)] -z-10 h-[150vh] opacity-5"  />
 
         <Container>
           <div className="flex flex-col items-center justify-center py-20 h-full">
@@ -90,9 +109,9 @@ const HomePage = () => {
                   className="rounded-md lg:rounded-xl bg-foreground/10 shadow-2xl ring-1 ring-border"
                 />
 
-                <BorderBeam size={250} duration={12} delay={9} />
+                {/* <BorderBeam size={250} duration={12} delay={9} /> */}
               </div>
-              <FloatingDockDemo />
+              {/* <FloatingDockDemo /> */}
             </div>
           </div>
         </Container>
@@ -142,9 +161,60 @@ const HomePage = () => {
         <FocusCards cards={cards} />
       </Wrapper>
 
+      {/* services */}
+      <Wrapper className="flex flex-col items-center justify-center mt-8 py-12 relative">
+        <div className="hidden md:block absolute -top-1/4 -left-1/3 w-72 h-72 bg-indigo-500 rounded-full blur-[10rem] -z-10"></div>
+        <Container>
+          <div className="max-w-md mx-auto text-start md:text-center">
+            <SectionBadge title="Devices" />
+            <h2 className="text-3xl lg:text-4xl font-semibold mt-6">
+              Our Service is Available on All Devices
+            </h2>
+          </div>
+        </Container>
+        <Container>
+          <div className="py-10 md:py-20 w-full">
+            <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden py-10">
+              <Marquee
+                reverse
+                pauseOnHover
+                className="[--duration:20s] select-none">
+                {therdRow.map((device) => (
+                  <figure
+                    key={device.name}
+                    className={cn(
+                      "relative w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
+                      "border-zinc-50/[.1] bg-background over:bg-zinc-50/[.15]"
+                    )}>
+                    <div className="flex flex-row justify-center items-center gap-2">
+                      <div className="flex flex-col justify-center">
+                        <figcaption className="text-sm font-medium">
+                          <img
+                            src={device.name}
+                            width={223}
+                            height={123}
+                            alt=""
+                            className=""
+                          />
+                        </figcaption>
+                      </div>
+                    </div>
+                  </figure>
+                ))}
+              </Marquee>
+              <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-background"></div>
+              <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-background"></div>
+            </div>
+          </div>
+        </Container>
+      </Wrapper>
+
       {/* pricing */}
+     
+
+      {/* ///////// */}
+
       <Wrapper className="flex w-full flex-col items-center justify-center py-12 relative">
-        <div className="hidden md:block absolute top-0 -right-1/3 w-72 h-72 bg-blue-500 rounded-full blur-[10rem] -z-10"></div>
         <Container>
           <div className="max-w-md mx-auto text-start md:text-center">
             <SectionBadge title="Pricing" />
@@ -159,42 +229,47 @@ const HomePage = () => {
             </p>
           </div>
         </Container>
+
         <Container className="flex items-center justify-center">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 w-full md:gap-8 py-10 md:py-20 flex-wrap max-w-4xl">
-            {pricingCards.map((card) => (
+            {products.map((card) => (
               <Card
-                key={card.title}
+                key={card.name}
                 className={cn(
                   "flex flex-col w-full border-neutral-700",
-                  card.title === "Unlimited Saas" && "border-2 border-primary"
+                  productdetail.title === "Unlimited Saas" &&
+                    "border-2 border-primary"
                 )}>
                 <CardHeader className="border-b border-border">
-                  <span>{card.title}</span>
+                  <span>{card.name}</span>
                   <CardTitle
                     className={cn(
-                      card.title !== "Unlimited Saas" && "text-muted-foreground"
+                      productdetail.title !== "Unlimited Saas" &&
+                        "text-muted-foreground"
                     )}>
-                    {card.price}
+                    ${card.price}/
                   </CardTitle>
-                  <CardDescription>{card.description}</CardDescription>
+                  <CardDescription>{productdetail.description}</CardDescription>
                 </CardHeader>
                 <CardContent className="pt-6 space-y-3">
-                  {card.features.map((feature) => (
-                    <div key={feature} className="flex items-center gap-2">
-                      <Zap className="w-4 h-4 fill-primary text-primary" />
-                      <p>{feature}</p>
-                    </div>
-                  ))}
+                  <div>
+                    {productdetail.features.map((feature) => (
+                      <div key={feature} className="flex items-center gap-2">
+                        <Zap className="w-4 h-4 fill-primary text-primary" />
+                        <p>{feature}</p>
+                      </div>
+                    ))}
+                  </div>
                 </CardContent>
                 <CardFooter className="mt-auto">
                   <Link
-                    href="#"
+                    href={`/product/${card.id}`}
                     className={cn(
                       "w-full text-center text-primary-foreground bg-primary p-2 rounded-md text-sm font-medium",
-                      card.title !== "Unlimited Saas" &&
+                      card.name !== "Unlimited Saas" &&
                         "!bg-foreground !text-background"
                     )}>
-                    {card.buttonText}
+                    {productdetail.buttonText}
                   </Link>
                 </CardFooter>
               </Card>
@@ -382,7 +457,8 @@ const HomePage = () => {
       </section>
     </section>
   );
-};
+
+}
 
 export default HomePage;
 const data = {

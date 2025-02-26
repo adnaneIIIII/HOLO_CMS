@@ -144,3 +144,28 @@ export const reviews = [
     body: "I'm at a loss for words. This is amazing. I love it.",
   },
 ];
+export const devices = [
+  {
+    name: "/icons/1.webp",
+  },{
+    name: "/icons/2.webp",
+  },{
+    name: "/icons/3.webp",
+  },{
+    name: "/icons/4.webp",
+  },{
+    name: "/icons/5.webp",
+  },{
+    name: "/icons/6.webp",
+  },{
+    name: "/icons/7.webp",
+  },{
+    name: "/icons/8.webp",
+  },{
+    name: "/icons/9.webp",
+  },{
+    name: "/icons/0.webp",
+  },{
+    name: "/icons/11.webp",
+  }
+];

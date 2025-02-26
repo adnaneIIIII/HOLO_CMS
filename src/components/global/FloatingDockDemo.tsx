@@ -20,7 +20,14 @@ export function FloatingDockDemo() {
       href: "#",
     },
     {
-      title: "Changelog",
+      title: "back",
+      icon: (
+        <SkipBack className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "#",
+    },
+    {
+      title: "next",
       icon: (
         <SkipForward className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
@@ -33,7 +40,6 @@ export function FloatingDockDemo() {
         mobileClassName="translate-y-20" // only for demo, remove for production
         items={links}
       />
-      
     </div>
   );
 }
