@@ -9,8 +9,8 @@ import {
 import { Avatar, AvatarFallback } from "@radix-ui/react-avatar";
 import { DollarSign, PartyPopper, ShoppingBag, Users } from "lucide-react";
 
-export default function page() {
 
+export default function Usercard() {
   return (
     <>
       <div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
@@ -68,17 +68,7 @@ export default function page() {
             <CardDescription>View all transactions</CardDescription>
           </CardHeader>
           <CardContent>
-            {/* <CharacterData
-              // data={[
-              //   { date: "Mar-10", totalSales: 10 },
-              //   { date: "Mar-15", totalSales: 120 },
-              //   { date: "Mar-20", totalSales: 150 },
-              //   { date: "Mar-25", totalSales: 130 },
-              //   { date: "Mar-30", totalSales: 100 },
-              //   { date: "Apr-01", totalSales: 190 },
-              //   { date: "Apr-05", totalSales: 40 },
-              // ]}
-            /> */}
+          
           </CardContent>
         </Card>
         <Card>
@@ -137,6 +127,6 @@ export default function page() {
           </CardContent>
         </Card>
       </div>
-      </>
+    </>
   );
 }

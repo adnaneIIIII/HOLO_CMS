@@ -7,6 +7,7 @@ export const categoryschima = z.object({
 });
 
 export const productSchema = z.object({
+  Product_name: z.string(), // Made optional
   name: z.string(),
   description: z.string(),
   shortdescription: z.string(),
@@ -42,4 +43,8 @@ export const Purchase = z.object({
     "Other",
   ]),
   productId: z.string().uuid("Invalid product ID"),
+  ppname: z.string().min(1, "First name is required"),
+  pprice: z.number(),
+
+
 });

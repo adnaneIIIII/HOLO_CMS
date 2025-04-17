@@ -103,12 +103,12 @@ export default function Create() {
                   <div className=" flex-col gap-3 ">
                     <Label>Description</Label>
                     <Textarea
-                       value={Content.toString()} // Controlled input
-                       onChange={(e) => {
-                         const newContent = e.target.value; // Get the input's value
-                         setContent(newContent); // Update local state
-                         fields.description.value = newContent; // Sync with the form's field
-                       }}
+                      //  value={Content.toString()} // Controlled input
+                      //  onChange={(e) => {
+                      //    const newContent = e.target.value; // Get the input's value
+                      //    setContent(newContent); // Update local state
+                      //    fields.description.value = newContent; // Sync with the form's field
+                      //  }}
                       key={fields.description.key}
                       name={fields.description.name}
                       placeholder="Product Description"

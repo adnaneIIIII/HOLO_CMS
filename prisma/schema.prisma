@@ -9,8 +9,8 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model User {
@@ -27,6 +27,7 @@ model User {
 
 model Products {
   id               String        @id @default(uuid())
+  Product_name     String
   name             String
   description      String
   shortdescription String
@@ -47,24 +48,25 @@ enum ProductStatus {
 }
 
 model Purchase {
-  id          String   @id @default(uuid())
-  firstname   String
-  lastname    String
-  email       String   @unique
-  phone       String
-  country     Countrys
-  
+  id        String   @id @default(uuid())
+  firstname String
+  lastname  String
+  email     String   @unique
+  phone     String
+  country   Countrys
+  ppname    String
+  pprice    Float
+
   purchasedAt DateTime @default(now())
 
-  productId   String
-  Products    Products @relation(fields: [productId], references: [id])  // Fixed relation
+  productId String
+  Products  Products @relation(fields: [productId], references: [id]) // Fixed relation
 }
 
-
 enum Countrys {
-  United_States  @map("United States")
+  United_States
   Canada
-  United_Kingdom @map("United Kingdom")
+  United_Kingdom
   Australia
   Philippines
   Other

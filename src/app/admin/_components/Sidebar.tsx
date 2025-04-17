@@ -24,10 +24,10 @@ const routes = [
 
 function DesktopSidebar() {
   const pathname = usePathname();
-  const activeRoute =
-    routes.find(
-      (route) => route.href.length > 0 && pathname.includes(route.href)
-    ) || routes[0];
+  // const activeRoute =
+  //   routes.find(
+  //     (route) => route.href.length > 0 && pathname.includes(route.href)
+  //   ) || routes[0];
 
   return (
     <div

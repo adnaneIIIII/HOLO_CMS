@@ -27,7 +27,6 @@ export async function ProductHome() {
   return existingProducts; // Return the fetched products
 }
 
-
 const prisma = new PrismaClient();
 
 export async function getData(productId: string) {
@@ -57,7 +56,6 @@ export async function getData(productId: string) {
   }
 }
 
-
 export async function createProduct(prevState: unknown, formData: FormData) {
   const submission = parseWithZod(formData, {
     schema: productSchema,
@@ -73,6 +71,7 @@ export async function createProduct(prevState: unknown, formData: FormData) {
     await prisma.products.create({
       data: {
         name: submission.value.name,
+        Product_name: submission.value.Product_name, // Handle optional value
         description: submission.value.description,
         shortdescription: submission.value.shortdescription,
         status: submission.value.status,
@@ -90,7 +89,7 @@ export async function createProduct(prevState: unknown, formData: FormData) {
 }
 
 export async function deleteProduct(productId: string) {
-  const { userId } = await auth();
+
   const user = await currentUser();
 
   // If you throw, the user will not be able to upload

@@ -1,10 +1,9 @@
-import { ArrowRight, ChevronRight, UserIcon, Zap } from "lucide-react";
+import { ArrowRight, UserIcon, Zap } from "lucide-react";
 import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Container, Wrapper } from "@/components";
-import { FloatingDockDemo } from "@/components/global/FloatingDockDemo";
 import { BorderBeam } from "@/components/ui/border-beam";
 import SectionBadge from "@/components/ui/section-badge";
 import { devices, perks, pricingCards, reviews } from "@/constants";
@@ -109,7 +108,7 @@ export async function HomePage() {
                   className="rounded-md lg:rounded-xl bg-foreground/10 shadow-2xl ring-1 ring-border"
                 />
 
-                {/* <BorderBeam size={250} duration={12} delay={9} /> */}
+                <BorderBeam size={250} duration={12} delay={9} />
               </div>
               {/* <FloatingDockDemo /> */}
             </div>
@@ -189,7 +188,7 @@ export async function HomePage() {
                     <div className="flex flex-row justify-center items-center gap-2">
                       <div className="flex flex-col justify-center">
                         <figcaption className="text-sm font-medium">
-                          <img
+                          <Image
                             src={device.name}
                             width={223}
                             height={123}

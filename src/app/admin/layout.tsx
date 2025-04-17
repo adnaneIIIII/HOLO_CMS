@@ -5,12 +5,25 @@ import Breadcrumbheader from "./_components/Breadcrumbheader";
 import { ModeToggle } from "@/components/ui/ModeToggle";
 import { Separator } from "@/components/ui/separator";
 import { SignedIn, UserButton } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
 export default async function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const user = await currentUser();
+
+  // If the user is not signed in, send them to Clerk's sign-in page
+  if (!user) {
+    redirect("/sign-in");
+  }
+
+  // Check if the email is "adnane@gmail.com"
+  if (user.emailAddresses[0].emailAddress !== "adnane.elotmani@usmba.ac.ma") {
+    redirect("/");
+  }
 
   return (
     <div className="flex h-screen">

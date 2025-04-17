@@ -1,6 +1,6 @@
 "use server";
 
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import { PrismaClient } from "@prisma/client";
 
 

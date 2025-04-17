@@ -3,7 +3,6 @@
 import React from "react";
 import Image from "next/image";
 import { ShoppingBag, StarIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import {
   Breadcrumb,
   BreadcrumbItem,

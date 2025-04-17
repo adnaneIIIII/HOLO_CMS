@@ -1,6 +1,5 @@
 import React from 'react'
 import Adminicons from './Adminicons'
-import AdminSearch from './AdminSearch'
 
 export default function AdminNav() {
   return (

@@ -1,10 +1,8 @@
 
 import { prisma } from "@/app/lib/db";
-import { Button } from "@/components/ui/button";
-import { StarIcon } from "lucide-react";
+
 import { notFound } from "next/navigation";
 import ProductPage from "../../_components/ProductPage";
-import FeaturedProducts from "../../_components/FeaturedProducts";
 
 async function getData(productId: string) {
   const data = await prisma.products.findUnique({

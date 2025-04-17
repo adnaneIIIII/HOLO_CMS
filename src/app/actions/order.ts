@@ -22,6 +22,8 @@ export async function createorder(prevState: unknown, formData: FormData) {
         phone: submission.value.phone,
         country: submission.value.country,
         productId: submission.value.productId, // Add the product relation
+        ppname: submission.value.ppname,
+        pprice: submission.value.pprice,
       },
     });
   } catch (error) {
